@@ -13,13 +13,13 @@ Tl;dr press both outer buttons on robot and hold until lights flash, connect a c
 
 If the above doesn't make sense then do follow the link above step by step in the order I have indicated.
 
-1. Setup the Raspberry Pi for booting Ubuntu via USB
+2. Setup the Raspberry Pi for booting Ubuntu via USB
 
 Follow the instructions at [Boot Raspberry Pi from USB](https://www.tomshardware.com/how-to/boot-raspberry-pi-4-usb)
 
 Tl;dr use the Raspberry Pi imager to burn a micro SSD with the `Misc utility images` `Bootloader` `USB Boot` image.  Insert into RPi and power up.  Leave running for > 10 secs, make sure green light flashing regularly, then power off.  Again use RPi imager and select `Other general purpose OS`, `Ubuntu`, and then either `Ubuntu Server 22.04 64 bit` or `Ubuntu Server 20.04 64 bit`.  *Remember to click the options gear* and turn on ssh, setup wifi, give it a hostname, setup locale and burn that to the USB.  When done insert into the top USB 3 slot (USB 2 are on left, Ethernet on Right, USB 3 in middle)
 
-1. Setup ROS2 (Humble for 22.04, Galactic for 20.04), for this purpose I am assuming [Humble install](https://iroboteducation.github.io/create3_docs/setup/ubuntu2204/) or follow [Setup Galactic Here](https://iroboteducation.github.io/create3_docs/setup/ubuntu2004/)
+3. Setup ROS2 (Humble for 22.04, Galactic for 20.04), for this purpose I am assuming [Humble install](https://iroboteducation.github.io/create3_docs/setup/ubuntu2204/) or follow [Setup Galactic Here](https://iroboteducation.github.io/create3_docs/setup/ubuntu2004/)
 
 Ssh to the RPi or connect to screen and keyboard.  Next update the RPi and set it up.
 
@@ -62,7 +62,7 @@ echo "export RMW_IMPLEMENTATION=rmw_fastrtps_cpp" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-1. Mount the Raspberry Pi, setup battery back power supply, and wire to the Create 3
+4. Mount the Raspberry Pi, setup battery back power supply, and wire to the Create 3
 
 The high current of some sensors suggest a powered USB Hub
 
@@ -82,7 +82,7 @@ The high current of some sensors suggest a powered USB Hub
 
 The Raspberry Pi should now boot, connect to WiFi, and connect to the Create 3
 
-1. First contact with Create 3
+5. First contact with Create 3
 
 ssh to the raspberry pi and run a few simple tests
 
@@ -125,11 +125,15 @@ Note the first part of the topics list from the Create 3 should match whatever n
 
 If you get a ros2 not found error message you need to `source /opt/ros/humble/setup.bash`. If you get only /parameter_events and /rosout then connection with the Create 3 is broken.  Use a browser to the Create 3 IP address and select `Application` `Restart Application`   If it stays like that after the reboot then check your USB hub to Create 3 USB-C cable and connection.  Failing the above, go back through the installation and look for missing steps or error messages.
 
-1. Check ROS2 Create 3 commands
+6. Check ROS2 Create 3 commands
 
 Note do not perform any movement or undock command if the Raspberry Pi is not mounted on the Create 3 and has no cables to a computer or other device away from the Create 3.
 
 `ros2 topic echo /namespace/battery_state` where namespace is the namespace you saw on the topic list command above
+
+7. Current wiring (with #todo items)
+
+![Wiring diagram from create3 to raspberry pi and chargers](/images/create3_rpi_usb_v1.png)
 
 ## Todo
 
